@@ -69,7 +69,8 @@ class LoginController extends Controller
     }
 
 
-        //phân quyền
+        //phân quyền    
+
             /**
      * Send the response after the user was authenticated.
      *

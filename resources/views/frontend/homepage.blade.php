@@ -38,10 +38,6 @@
                                     </div>
                                     <ul class="list-unstyled list-style-group">
                                         <li class="border-bottom p-2 d-flex justify-content-between">
-                                            <span>Fuel</span>
-                                            <span style="font-weight: 600">{{ $car->fuel }}</span>
-                                        </li>
-                                        <li class="border-bottom p-2 d-flex justify-content-between">
                                             <span>Number of seats</span>
                                             <span style="font-weight: 600">{{ $car->seats }}</span>
                                         </li>
@@ -51,7 +47,7 @@
                             <!-- Product actions-->
                             <div class="card-footer border-top-0 bg-transparent">
                                 <div class="text-center">
-                                    <a class="btn btn-primary mt-auto" href="#">Sewa</a>
+                                    <a class="btn btn-primary mt-auto" href="{{ route('rent.index', ['id' => $car->id]) }}">Rent</a>
                                     <a class="btn btn-info mt-auto text-white"
                                         href="{{ route('detail', ['id' => $car->id]) }}">Detail</a>
                                 </div>
