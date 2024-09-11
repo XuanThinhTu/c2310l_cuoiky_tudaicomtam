@@ -15,5 +15,5 @@ Route::get('/rent-show', function () {
 
 
 Route::get('admin/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.car.index');
-
+Route::get('/admin/orders', [\App\Http\Controllers\Admin\OrderController::class, 'index'])->name('admin.orders');
 Auth::routes();
