@@ -19,7 +19,15 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-        });
+
+            // Các cột bổ sung
+            $table->string('gender')->nullable(); // Giới tính
+            $table->string('phonenumber')->nullable(); // Số điện thoại
+            $table->date('birth')->nullable(); // Ngày sinh
+            $table->string('citizen_identification_card')->nullable(); // Căn cước công dân
+            $table->string('driver_license')->nullable(); // Bằng lái xe
+            $table->boolean('isAdmin')->default(false); // Quyền admin
+            });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();

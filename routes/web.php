@@ -7,7 +7,13 @@ Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('h
 Route::get('/contact', [\App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 Route::get('/detail/{id}', [\App\Http\Controllers\HomeController::class, 'detail'])->name('detail');
 
+Route::get('/rent-car', [\App\Http\Controllers\RentController::class, 'showRentForm'])->name('rent.car.submit');
+
+Route::get('/rent-show', function () {
+    return view('frontend.rent');
+})->name('rent.index');
+
+
 Route::get('admin/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.car.index');
 
 Auth::routes();
-
