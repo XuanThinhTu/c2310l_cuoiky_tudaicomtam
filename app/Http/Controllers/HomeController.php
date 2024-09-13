@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;  // Import model Car
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -28,7 +29,7 @@ class HomeController extends Controller
         $cars = Car::paginate(8);
 
         // Truyền danh sách xe vào view
-        return view('frontend.homepage', compact('cars'))->with('i', (request()->input('page', 1)-1)*10);
+        return view('frontend.homepage', compact('cars'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     public function contact()
@@ -48,5 +49,10 @@ class HomeController extends Controller
 
         // Truyền thông tin của xe vào view
         return view('frontend.detail', compact('car'));
+
+        // for "Book now" button
+        $car = Car::findOrFail($id);
+        $user = Auth::user();
+        return view('frontend.detail', compact('car', 'user'));
     }
 }

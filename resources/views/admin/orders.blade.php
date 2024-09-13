@@ -23,6 +23,7 @@
                                 <th>Status</th>
                                 <th>User</th>
                                 <th>Car</th>
+                                <th>Actions</th> <!-- New column for action buttons -->
                             </tr>
                         </thead>
                         <tbody>
@@ -35,6 +36,22 @@
                                     <td>{{ ucfirst($order->status) }}</td>
                                     <td>{{ $order->user ? $order->user->name : 'N/A' }}</td>
                                     <td>{{ $order->car ? $order->car->model : 'N/A' }}</td>
+                                    <td>
+                                        <!-- Status Update Form -->
+                                        <form action="{{ route('admin.orders.update', $order->id) }}" method="POST">
+                                            @csrf
+                                            <select name="status" class="form-control">
+                                                <option value="in process"
+                                                    {{ $order->status == 'in process' ? 'selected' : '' }}>In Process
+                                                </option>
+                                                <option value="approved"
+                                                    {{ $order->status == 'approved' ? 'selected' : '' }}>Approved</option>
+                                                <option value="rejected"
+                                                    {{ $order->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
+                                            </select>
+                                            <button type="submit" class="btn btn-sm btn-success mt-2">Update</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
