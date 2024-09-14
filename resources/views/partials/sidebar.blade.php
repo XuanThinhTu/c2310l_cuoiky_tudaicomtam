@@ -23,6 +23,9 @@
         <a class="nav-link" href="{{ route('admin.orders') }}">
             <i class="fas fa-fw fa-box"></i>
             <span>Orders</span>
+            @if ($pendingOrdersCount > 0)
+                <span class="badge badge-danger">{{ $pendingOrdersCount }}</span>
+            @endif
         </a>
     </li>
 
@@ -32,6 +35,7 @@
             <span>List Of Cars</span>
         </a>
     </li>
+
 
 
 

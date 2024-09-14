@@ -23,6 +23,7 @@
                                 <th>Status</th>
                                 <th>User</th>
                                 <th>Car</th>
+                                <th>Actions</th> <!-- New column for action buttons -->
                             </tr>
                         </thead>
                         <tbody>
@@ -35,6 +36,28 @@
                                     <td>{{ ucfirst($order->status) }}</td>
                                     <td>{{ $order->user ? $order->user->name : 'N/A' }}</td>
                                     <td>{{ $order->car ? $order->car->model : 'N/A' }}</td>
+                                    <td>
+                                        <!-- Status Update Form -->
+                                        <form action="{{ route('admin.orders.update', $order->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <!-- This line is crucial, it tells Laravel to send a PUT request -->
+
+                                            <select name="status" required>
+                                                <option value="in process"
+                                                    {{ $order->status == 'in process' ? 'selected' : '' }}>In Process
+                                                </option>
+                                                <option value="approved"
+                                                    {{ $order->status == 'approved' ? 'selected' : '' }}>Approved</option>
+                                                <option value="reject" {{ $order->status == 'reject' ? 'selected' : '' }}>
+                                                    Reject</option>
+                                                <option value="done" {{ $order->status == 'done' ? 'selected' : '' }}>
+                                                    Done</option>
+                                            </select>
+
+                                            <button type="submit" class="btn btn-primary">Update Order</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
