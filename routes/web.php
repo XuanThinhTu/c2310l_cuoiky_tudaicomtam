@@ -13,7 +13,8 @@ Route::get('/rent-show', function () {
     return view('frontend.rent');
 })->name('rent.index');
 
-
 Route::get('admin/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.car.index');
 Route::get('/admin/orders', [\App\Http\Controllers\Admin\OrderController::class, 'index'])->name('admin.orders');
+Route::get('/admin/carList', [\App\Http\Controllers\Admin\CarController::class, 'index'])->name('admin.carList');
+Route::post('/admin/action', [\App\Http\Controllers\Admin\CarController::class, 'handleAction'])->name('car.handleAction');
 Auth::routes();

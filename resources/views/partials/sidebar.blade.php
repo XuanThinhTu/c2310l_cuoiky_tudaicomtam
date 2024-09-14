@@ -26,6 +26,13 @@
         </a>
     </li>
 
+    <li class="nav-item {{ request()->routeIs('admin.carList') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.carList') }}">
+            <i class="fas fa-fw fa-box"></i>
+            <span>List Of Cars</span>
+        </a>
+    </li>
+
 
 
 

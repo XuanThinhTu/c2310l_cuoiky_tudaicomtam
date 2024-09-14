@@ -19,6 +19,76 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('backend/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <style>
+        .ellipsis {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            /* Chiều rộng của ô */
+            display: block;
+        }
+
+        /* Styles cho các nút bên trong dropdown */
+        input[type="submit"] {
+            display: block;
+            /* Để đảm bảo nút chiếm cả chiều rộng của khối */
+            width: 100%;
+            /* Chiếm toàn bộ chiều rộng của phần tử chứa */
+            background-color: #007bff;
+            /* Màu nền của nút */
+            color: white;
+            /* Màu chữ của nút */
+            border: none;
+            /* Bỏ viền */
+            border-radius: 6px;
+            /* Bo góc nút */
+            padding: 12px 24px;
+            /* Khoảng cách bên trong nút */
+            font-size: 16px;
+            /* Kích thước chữ */
+            font-weight: bold;
+            /* Làm chữ đậm hơn */
+            cursor: pointer;
+            /* Con trỏ chuột khi di chuột qua nút */
+            margin-bottom: 10px;
+            /* Tạo khoảng cách giữa các nút */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            /* Hiệu ứng chuyển màu nền và bóng */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Tạo bóng nhẹ cho nút */
+        }
+
+        input[type="submit"]:last-child {
+            margin-bottom: 0;
+            /* Bỏ margin-bottom cho nút cuối cùng */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+            /* Màu nền khi hover */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            /* Bóng rõ hơn khi hover */
+        }
+
+        input[type="submit"]:active {
+            background-color: #004494;
+            /* Màu nền khi nhấn giữ */
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+            /* Bóng giảm khi nhấn giữ */
+            transform: scale(0.98);
+            /* Hiệu ứng thu nhỏ khi nhấn giữ */
+        }
+
+        /* Đảm bảo phần tử chứa các nút dropdown căn giữa */
+        .dropdown-menu {
+            padding: 10px;
+            /* Tạo khoảng cách đều xung quanh */
+            text-align: center;
+            /* Căn giữa nội dung */
+        }
+    </style>
+
 
 </head>
 
