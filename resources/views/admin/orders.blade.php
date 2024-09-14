@@ -40,16 +40,22 @@
                                         <!-- Status Update Form -->
                                         <form action="{{ route('admin.orders.update', $order->id) }}" method="POST">
                                             @csrf
-                                            <select name="status" class="form-control">
+                                            @method('PUT')
+                                            <!-- This line is crucial, it tells Laravel to send a PUT request -->
+
+                                            <select name="status" required>
                                                 <option value="in process"
                                                     {{ $order->status == 'in process' ? 'selected' : '' }}>In Process
                                                 </option>
                                                 <option value="approved"
                                                     {{ $order->status == 'approved' ? 'selected' : '' }}>Approved</option>
-                                                <option value="rejected"
-                                                    {{ $order->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
+                                                <option value="reject" {{ $order->status == 'reject' ? 'selected' : '' }}>
+                                                    Reject</option>
+                                                <option value="done" {{ $order->status == 'done' ? 'selected' : '' }}>
+                                                    Done</option>
                                             </select>
-                                            <button type="submit" class="btn btn-sm btn-success mt-2">Update</button>
+
+                                            <button type="submit" class="btn btn-primary">Update Order</button>
                                         </form>
                                     </td>
                                 </tr>

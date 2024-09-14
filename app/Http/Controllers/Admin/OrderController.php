@@ -14,6 +14,9 @@ class OrderController extends Controller
     // Display all orders for the admin
     public function index()
     {
+        // // Lấy tất cả các đơn hàng đang trong trạng thái 'in process'
+        // $orders = Order::where('status', 'in process')->get();
+
         $orders = Order::all();
         return view('admin.orders', compact('orders'));
     }
@@ -23,12 +26,13 @@ class OrderController extends Controller
     {
         $user = Auth::user();
 
-        // Check if the user's age is under 18
-        if ($user->age < 18) {
-            return redirect()->back()->with('error', 'You must be 18 or older to place an order.');
-        }
+        // Validate the incoming request
+        $request->validate([
+            'time' => 'required|date_format:H:i', // Time must be in the correct format
+            'date' => 'required|date', // Date must be a valid date
+        ]);
 
-        // Create the order with "in process" status
+        // Create the order
         $order = Order::create([
             'user_id' => $user->id,
             'car_id' => $request->car_id,
@@ -38,8 +42,10 @@ class OrderController extends Controller
             'status' => 'in process',
         ]);
 
-        return redirect()->route('orders.confirmation')->with('success', 'Your order is being processed.');
+        return redirect()->route('frontend.confirmation')
+            ->with('status', 'Your booking is being processed. Please wait for admin confirmation.');
     }
+
 
     // Order confirmation view
     public function confirmation()
@@ -48,6 +54,8 @@ class OrderController extends Controller
     }
 
     // Update order status (admin only)
+    // OrderController.php
+
     public function updateStatus(Request $request, $id)
     {
         $order = Order::findOrFail($id);
@@ -60,6 +68,11 @@ class OrderController extends Controller
             $car->isAvailable = 0;
             $car->save();
         }
+
+        // Add a flash message to notify the user about the status change
+        $user = $order->user; // Assuming you have a relationship between Order and User
+        $message = 'Your order has been ' . $order->status;
+        session()->flash('status', $message);
 
         return redirect()->route('admin.orders')->with('status', 'Order updated successfully.');
     }
