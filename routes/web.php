@@ -20,11 +20,9 @@ Route::get('/rejected', [\App\Http\Controllers\HomeController::class, 'rejected'
 // Check orderStatus
 Route::get('/order-status/{order_id}', [\App\Http\Controllers\HomeController::class, 'checkOrderStatus'])->name('checkOrderStatus');
 
-
-
-
-
 //Admin Route
 Route::get('admin/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.car.index');
 Route::get('/admin/orders', [\App\Http\Controllers\Admin\OrderController::class, 'index'])->name('admin.orders');
+Route::get('/admin/carList', [\App\Http\Controllers\Admin\CarController::class, 'index'])->name('admin.carList');
+Route::post('/admin/action', [\App\Http\Controllers\Admin\CarController::class, 'handleAction'])->name('car.handleAction');
 Auth::routes();
