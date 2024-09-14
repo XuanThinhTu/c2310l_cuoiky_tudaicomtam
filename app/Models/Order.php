@@ -1,19 +1,20 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $fillable = ['time', 'date', 'price', 'status', 'user_id', 'car_id'];
+    // Disable automatic timestamps
+    public $timestamps = false;
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function car()
-    {
-        return $this->belongsTo(Car::class);
-    }
+    protected $fillable = [
+        'user_id',
+        'car_id',
+        'time',
+        'date',
+        'price',
+        'status',
+    ];
 }
